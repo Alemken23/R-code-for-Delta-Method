@@ -158,7 +158,7 @@ deltaMethod(est, "b1*(pop/Q)", vcov.=d)
 #  Danielson 1979
 
 #  direct from the study # it's all log
-
+# study 3 
 #  Billings 
 #  Linear model
 
@@ -177,7 +177,7 @@ deltaMethod(est, "b1*(mean.P/mean.Q)", vcov.=d)
 ##########
 
 #  Study 4 
-#Abrams and Safidis (2012)  
+# Abrams and Safidis (2012)  
 
 # Getting the SE values for the model is difficult.  
 # In this instance the pooled estimate is upwardly biased. 
@@ -204,7 +204,7 @@ SE6 = abs((-0.562 + 0.381))/(2*1.96)
 SE6
 
 ######
-
+# Study 5
 # Grafton et al. (2009)
 
 #  double log for price and income
@@ -227,7 +227,7 @@ mean.P*semi.est
 
 
 #############
-
+# Study 6
 # Hoffman et al. (2006)
 
 #  Note there is an aggregation bias issue in the all group results
@@ -275,10 +275,9 @@ deltaMethod(z, "d1", vcov.=d)
 
 # direct from the paper
 
-
 ##  The linear results
 # Price short linear
-#Owners
+# Owners
 d = 7.377^2 # SE of the paper
 est = -59.888 # regression coefficienet of from the paper
 names(est) <- c("b1")
@@ -323,8 +322,8 @@ deltaMethod(z, "d1/(1-d2)", vcov.=d)
 #               Estimate        SE      2.5 %     97.5 %
  # d1/(1 - d2)  -0.6535769  0.3478639  -1.335378  0.02822379
 
-#Income
-#Owners
+# Income
+# Owners
 d = 7.377^2 # SE of the paper
 est = -59.888 # regression coefficienet of from the paper
 names(est) <- c("b1")
@@ -362,13 +361,9 @@ est = 10.685
 names(est) <- c("b1")
 deltaMethod(est, "b1*(pop/Q)", vcov.=d)
 
-
-library(car)
 #  Create variance matrix based on data beta/t = SE, then square to get variance
 #  First value is the relevant point estimate, or direct effect
 #  Second value is the rho estimate.
-
-
 
 
 d = diag(c((.021/4.0)^2,(.419/9.2)^2),2,2)
@@ -417,6 +412,7 @@ deltaMethod(z, "d1/(1-d2)", vcov.=d)
 #  the full effect is imprecise.  If rho estimated with precision then,
 #  can largely ignore
 ####################
+# Study 7
 # Hoglund (1999)
 
 mean.P= 4.40
@@ -424,16 +420,18 @@ mean.Q = 190.4
 mean.Person = 2.33 
 
 #################
+
+# Study 8
 # Olmstead et al.(2007)
 # I took all values directly from the study--it's all log
 mean.P=0.571
 mean.Q= 6.352
 
-  
 #############
+# Study 9
 # Zaied and Binet (2015)
 
-#price elasticity for lower block
+# price elasticity for lower block
 
 mean.Q= 19.86
 mean.P=0.39
@@ -490,8 +488,7 @@ names(est) <- c("b1")
 
 deltaMethod(est, "b1*(mean.P/mean.Q)", vcov.=d)
 
-
-##People elasticity for lower block, LR
+## People elasticity for lower block, LR
 Q= 19.86
 pop=73
 se = 2.5/-1.76 # b/t
@@ -541,7 +538,7 @@ est = 0.022
 names(est) <- c("b1")
 deltaMethod(est, "b1*(M/Q)", vcov.=d)
 
-#####################
+# Study 10
 # Carver and Boland (1980)
 # The Authors indicate that there is an aggregation of data
 #values for OLS without lagged consumption
@@ -710,8 +707,6 @@ names(est) <- c("b1")
 
 deltaMethod(est, "b1*(P/Q)", vcov.=d)
 
-
-
 #Income
 se = 0.0016/0.0018 # b/t, 0.0018= income coeff, 0.0019= t value
 se
@@ -725,6 +720,7 @@ names(est) <- c("b1")
 
 deltaMethod(est, "b1*(Income/mean.Q)", vcov.=d)
 
+# Study 11
 # Jegnie et al (2021)
 # Long-run and short-run SE estimates for Table 7
 
@@ -736,8 +732,6 @@ z <- c(-0.124, 0.771)# the coefficients for SR and lagged demand values of the o
 names(z) <- c("d1", "d2")
 deltaMethod(z, "d1/(1-d2)", vcov.=d)
 
-
-
 #Winter demand model (Model 3)
 
 d = diag(c(0.005^2, 0.001^2),2,2)#SE values of the original model for SR & lagged demand, respectively
@@ -748,8 +742,6 @@ deltaMethod(z, "d1/(1-d2)", vcov.=d)
 
 
 #Summer demand model (Model 4)
-
-
 d = diag(c(0.005^2, 0.001^2),2,2)#SE values of the original model for SR & LR, respectively
 d
 z <- c(-0.272, 0.694)# the coefficients for SR and LR values of the original model 
@@ -848,7 +840,7 @@ names(z) <- c("d1", "d2")
 deltaMethod(z, "d1/(1-d2)", vcov.=d)
 
 
-
+# Study 12
 ##Scasny and Smutna (2021)
 #Table 7 Model A
 
@@ -868,6 +860,7 @@ names(z) <- c("d1", "d2")
 deltaMethod(z, "d1/(1-d2)", vcov.=d)
 ###################################
 
+# Study 13
 ##Suarez-Varela (2020)
 #Table 13
 #Linear model
