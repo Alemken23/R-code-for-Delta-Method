@@ -232,10 +232,10 @@ mean.P*semi.est
 
 #############
 # Study 6
-# Hoffman et al. (2006)
+# Hoffmann et al. (2006). Urban water demand with fixed volumetric charging in a large municipality: the case of Brisbane, Australia. Australian Journal of Agricultural and Resource Economics, 50(3), 347-359.
 
 #  Note there is an aggregation bias issue in the all group results
-#  So we need to use the seperate results
+#  So we need to use the separate results
 
 #  The authors state a preference for the log-log results
 #  The results are similar so probably no real value in working further
@@ -337,13 +337,13 @@ Q = 75.36
 
 deltaMethod(est, "b1*(I/Q)", vcov.=d)
 
-# Derive the full elasticty SE using the delta method
+# Derive the full elasticity SE using the delta method
 
 #  Assume the off diagonals are zero here.  I think this is plausible
 #  but i am not 100% sure... any non-sero values will inflate SE
 #  so maybe this is lower bound?????
 
-# People Elasticity
+# People (household-sze) Elasticity
 #Owner-occupied
 pop=2.57
 Q=75.36
@@ -416,23 +416,9 @@ deltaMethod(z, "d1/(1-d2)", vcov.=d)
 #  the full effect is imprecise.  If rho estimated with precision then,
 #  can largely ignore
 ####################
+
+
 # Study 7
-# Hoglund (1999)
-
-mean.P= 4.40
-mean.Q = 190.4
-mean.Person = 2.33 
-
-#################
-
-# Study 8
-# Olmstead et al.(2007)
-# I took all values directly from the study--it's all log
-mean.P=0.571
-mean.Q= 6.352
-
-#############
-# Study 9
 # Zaied and Binet (2015)
 
 # price elasticity for lower block
@@ -541,191 +527,41 @@ d = se^2
 est = 0.022
 names(est) <- c("b1")
 deltaMethod(est, "b1*(M/Q)", vcov.=d)
+#####################################
+#####################################
 
-# Study 10
-# Carver and Boland (1980)
-# The Authors indicate that there is an aggregation of data
-#values for OLS without lagged consumption
-#Short-run 
-se = -33.9/11.5 # b/t, -33.9= price coeff, 11.5= t value
+# Study 8
+##Suarez-Varela (2020)
+#Table 13
+#Linear model
+
+mean.Q= 122.0
+mean.P= 1.205
+se = 0.470 # b/t
 se
 d = se^2
-est = -33.9
-#at means
-Q= 373
-P=0.7531
-
+est = -46.45
 names(est) <- c("b1")
 
-deltaMethod(est, "b1*(P/Q)", vcov.=d)
+deltaMethod(est, "b1*(mean.P/mean.Q)", vcov.=d)
 
-##LSDV cross
-se = -10.9/10 # b/t, -33.9= price coeff, 11.5= t value
+
+#Log-linear model
+
+mean.Q= 122.0
+mean.P= 1.205
+se = 0.00386 # b/t
 se
 d = se^2
-est = -10.9
-#at means
-Q= 373
-P=0.7531
-
+est = -0.378
 names(est) <- c("b1")
 
-deltaMethod(est, "b1*(P/Q)", vcov.=d)
+deltaMethod(est, "b1*mean.P", vcov.=d)
 
 
-# people elasticity
-se = 12.0/4.8 # b/t, 12.0= price coeff, 4.8= t value
-se
-d = se^2
-est = 12.0
-#at means
-mean.Q= 373
-#Income=12767.1 ? not sure
-pop= 4.532307692
+# Study 9
+# Jegnie et al (2021) - IN PRESS
 
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(pop/mean.Q)", vcov.=d)
-
-##Price elaticity for LSDV--cross section  
-
-se = -10.9/10.0 # b/t, -10.9= price coeff, 10.0= t value
-se
-d = se^2
-est = -10.9
-#at means
-Q= 373
-P=0.7531
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(P/Q)", vcov.=d)
-
-##Price elaticity for LSDV--time series 
-
-se = -24.5/12.0 # b/t
-se
-d = se^2
-est = -24.5
-#at means
-Q= 373
-P=0.7531
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(P/Q)", vcov.=d)
-
-#  Owners long run price
-d = diag(c(7.377^2, .055^2),2,2)
-d
-z <- c(-59.888, .616)
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)*(P/Q)", vcov.=d)
-
-# people elasticity for time series
-
-se = 3.36/3.71 # b/t
-se
-d = se^2
-est = 3.36
-#at means
-mean.Q= 373
-#Income=12767.1= 12.77= the unit is in 1000s ? not sure.
-pop= 4.532307692
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(pop/mean.Q)", vcov.=d)
-
-### Long run results
-#OLS
-d = diag(c(0.00595^2, 0.023^2),2,2)#SE values of the original study for SR & LR, respectively
-d
-z <- c(-0.05, 0.928)# the coefficients for SR and LR values of the original study 
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)", vcov.=d)
-
-#LSDV cross
-d = diag(c(0.0022^2, 0.055^2),2,2)#SE values of the original study for SR & LR, respectively
-d
-z <- c(-0.02, 0.177)# the coefficients for SR and LR values of the original study 
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)", vcov.=d)
-
-#LSDV time
-d = diag(c(0.0041^2, 0.023^2),2,2)#SE values of the original study for SR & LR, respectively
-d
-z <- c(-0.04, 0.941)# the coefficients for SR and LR values of the original study 
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)", vcov.=d)
-
-# Table 3
-
-#LSDV cross
-d = diag(c(0.051^2, 0.046^2),2,2)#SE values of the original study for SR & LR, respectively
-d
-z <- c(-0.1, 0.142)# the coefficients for SR and LR values of the original study 
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)", vcov.=d)
-
-
-#Income=12767.1= 12.77= the unit is in 1000s ? not sure.
-
-se = 0.0018/0.0019 # b/t, 0.0018= income coeff, 0.0019= t value
-se
-d = se^2
-est = 0.0018
-#at means
-mean.Q= 373
-Income= 12.77
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(Income/mean.Q)", vcov.=d)
-
-## Table 3 
-
-se = -10.6/10.7 # b/t, -10.9= price coeff, 10.0= t value
-se
-d = se^2
-est = -10.6
-#at means
-Q= 373
-P=0.7531
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(P/Q)", vcov.=d)
-
-##Price elaticity for LSDV--time series 
-
-se = -2.89/10.53 # b/t
-se
-d = se^2
-est = -2.89
-#at means
-Q= 373
-P=0.7531
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(P/Q)", vcov.=d)
-
-#Income
-se = 0.0016/0.0018 # b/t, 0.0018= income coeff, 0.0019= t value
-se
-d = se^2
-est = 0.0016
-#at means
-mean.Q= 373
-Income= 12.77
-
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(Income/mean.Q)", vcov.=d)
-
-# Study 11
-# Jegnie et al (2021)
 # Long-run and short-run SE estimates for Table 7
 
 # Pooled demand model (Model 2)
@@ -844,53 +680,5 @@ names(z) <- c("d1", "d2")
 deltaMethod(z, "d1/(1-d2)", vcov.=d)
 
 
-# Study 12
-##Scasny and Smutna (2021)
-#Table 7 Model A
-
-d = diag(c(0.120^2, 0.027^2),2,2)#SE values of the original model for SR & lagged demand, respectively
-d
-z <- c(-0.244, 0.225)# the coefficients for SR and lagged demand values of the original model
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)", vcov.=d)
-
-
-#Table 7 Model B
-
-d = diag(c(0.120^2, 0.030^2),2,2)#SE values of the original model for SR & lagged demand, respectively
-d
-z <- c(-0.246, 0.165)# the coefficients for SR and lagged demand values of the original model
-names(z) <- c("d1", "d2")
-deltaMethod(z, "d1/(1-d2)", vcov.=d)
-###################################
-
-# Study 13
-##Suarez-Varela (2020)
-#Table 13
-#Linear model
-
-mean.Q= 122.0
-mean.P= 1.205
-se = 0.470 # b/t
-se
-d = se^2
-est = -46.45
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*(mean.P/mean.Q)", vcov.=d)
-
-
-#Log-linear model
-
-mean.Q= 122.0
-mean.P= 1.205
-se = 0.00386 # b/t
-se
-d = se^2
-est = -0.378
-names(est) <- c("b1")
-
-deltaMethod(est, "b1*mean.P", vcov.=d)
-
-
+####### THE END #####
 
