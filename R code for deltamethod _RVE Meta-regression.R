@@ -89,7 +89,7 @@ deltaMethod(est, "b1*(M/Q)", vcov.=d)
 #               Estimate         SE    2.5 %    97.5 %
 #  b1 * (M/Q) 0.3193628 0.05384071 0.213837 0.4248887
 
-#  People elasticty
+#  People (household-size) elasticity
 ## Table 3
 # 21 B
 
@@ -155,14 +155,17 @@ deltaMethod(est, "b1*(pop/Q)", vcov.=d)
 #  SE .306
 
 ##################################################################
-# study 2 
-#  Danielson 1979
+# Study 2 
 
-#  direct from the study # it's all log
+# Danielson, L. E. (1979). An analysis of residential demand for water using micro time‐series data. Water Resources Research, 15(4), 763-767.
+
+# The elasticity estimates and associated SE values can be directly taken from the study
+# All models are specified using double-log functional form
+
 # study 3 
-#  Billings 
-#  Linear model
+#  Billings (1982) 
 
+#  Linear model
 mean.Q = (26.3*-0.331)/-0.49 # where 26.3= mean.p, .331 = price coeff, -0.49= elasticity
 mean.P = 26.3
 
@@ -178,24 +181,24 @@ deltaMethod(est, "b1*(mean.P/mean.Q)", vcov.=d)
 ##########
 
 #  Study 4 
-# Abrams and Safidis (2012)  
+# Abrams et al. (2012). An econometric assessment of pricing Sydney’s residential water use. Economic Record, 88(280), 89-105.
 
 # Getting the SE values for the model is difficult.  
 # In this instance the pooled estimate is upwardly biased. 
 # So take the weighted average estimates and apply the 
 # Pooled SE to the weighted estimates.Seems similar
-#  probably a reasonable approximation
+# probably a reasonable approximation
 
 SE1 = abs((-0.009 -0.031))/(2*1.96) # find out why
 SE1
 
-SE2 = abs((-0.016 -0.053))/(2*1.96)# I take directly wieghted average SR estimate
+SE2 = abs((-0.016 -0.053))/(2*1.96)# I take directly weighted average SR estimate
 SE2
 
 SE3 = abs((-0.027 -0.088))/(2*1.96)
 SE3
 
-SE4 = abs((-0.197 + 0.133))/(2*1.96)# for the LR the wieghted average estimate as well
+SE4 = abs((-0.197 + 0.133))/(2*1.96)# for the LR the weighted average estimate as well
 SE4
 
 SE5 = abs((-0.338 + 0.228))/(2*1.96)
@@ -206,13 +209,13 @@ SE6
 
 ######
 # Study 5
-# Grafton et al. (2009)
+# Grafton et al. (2011). Determinants of residential water consumption: Evidence and analysis from a 10‐country household survey. Water Resources Research, 47(8).
 
-#  double log for price and income
-#  for people take the average of the adult and child
+#  Double log for price and income
+#  For people take the average of the adult and child
 #  SE is the same for both values
 #  semi log so multiply by mean household pop
-#  children and adults not reported seperately
+#  Children and adults not reported separately
 
 mean.P= 1.770
 mean.Q = 294 
