@@ -6,26 +6,26 @@ library(metafor)
 
 
 #  Simple case Linear model
-#  scaling matches the more complex derivation at the mean
+#  Scaling matches the more complex derivation at the mean
 #  Evaluation at other points more complex
-#  CIs not strickly symetric, also i think
+#  CIs not strictly symmetric
 
 # Check on how important the approximation is;
 
-#  Evaluated at the mean, zro correlation so should work
+#  Evaluated at the mean, zero correlation so should work
 
 # Var(Eta) = Eta^2 x [ var(Y-hat)/Y-hat-bar^2 + Var(b-hat)/b-hat^2]# the variance using delta method
 
 #  Use original paper results
 Eta = -.3622
-var.Y.hat = .4136 # SEE 
+var.Y.hat = .4136 # SE
 Y.hat.bar  = 51.843
 var.b.hat = 0.7322^2
 b.hat = 2.259
 
 Var.Eta = Eta^2 * ((var.Y.hat/Y.hat.bar^2) + (var.b.hat/b.hat^2) )
 Var.Eta^.5
-#  0.1174843 # exact SE
+
 
 #  Approximate SE
 
@@ -33,7 +33,8 @@ slope = -2.259
 slope.SE = .7322
 mean.P = 8.31
 mean.Q = 51.843
-#elasticity
+
+# Extract the elasticity estimates 
 
 slope*(mean.P/mean.Q)
 # -0.3620988
@@ -41,18 +42,18 @@ slope*(mean.P/mean.Q)
 slope.SE*(mean.P/mean.Q)
 # 0.1173655
 
-#  so results match.  Also confirmed with H & L paper
+# So results match.  Also confirmed with H & L paper
 
 #  Now start to collect information
 
 #######################################
 # Study 1
+# Howe, C. W., & Linaweaver Jr, F. P. (1967). The impact of price on residential water demand and its relation to system design and price structure. Water Resources Research, 3(1), 13-32.
 
-# Howe and Linaweaver 1967
-#  All final models are based on author selected models
+# All final models are based on author selected models
 
-#  Domestic dwelling inhouse use
-#  linear model to get the elasticty and SE
+# Domestic dwelling inhouse use
+# Linear model to get the elasticity and SE
 #  Regression values Table 1# table 2?
 #  Quantities for the 
 SE=.339
@@ -72,7 +73,7 @@ SE*(P/Q)
 # Note at the means this application = the same as direct scaling
 # of the raw data
 
-#  Income elasticty domestic indoor
+#  Income elasticity domestic indoor
 
 #  Note income proxied by house price
 #  big qualification
